@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 
-const { mongoose } = require("./db");
+const { mongoose } = require("./db-prod");
 var appointmentController = require("./controllers/appointmentController");
 var userController = require("./controllers/userController");
 
