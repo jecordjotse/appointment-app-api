@@ -34,7 +34,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(3000, () => {
+const port = process.env.port || 8080;
+
+app.listen(port, () => {
   console.log("Server started at port: 3000");
 });
 
