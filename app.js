@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 
-const { mongoose } = require("./db");
+const { mongoose } = require("./db-prod");
 var appointmentController = require("./controllers/appointmentController");
 var userController = require("./controllers/userController");
 
@@ -34,7 +34,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(3000, () => {
+const port = process.env.port || 8080;
+
+app.listen(port, () => {
   console.log("Server started at port: 3000");
 });
 
