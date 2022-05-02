@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 const port = process.env.port || 8080;
 
 app.listen(port, () => {
-	console.log("Server started at port: 3000");
+  console.log("Server started at port: 3000");
 });
 
 app.use("/appointments", appointmentController);
