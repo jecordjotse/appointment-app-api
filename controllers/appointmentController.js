@@ -86,7 +86,9 @@ router.get("/s/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send(`No record with given id: ${req.params.id}`);
+    return res
+      .status(400)
+      .send({ error: `No record with given id: ${req.params.id}` });
 
   Appointment.findById(req.params.id, (err, doc) => {
     if (!err) res.send(doc);
@@ -126,7 +128,9 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send(`No record with given id: ${req.params.id}`);
+    return res
+      .status(400)
+      .send({ error: `No record with given id: ${req.params.id}` });
 
   var aptmt = {
     start: req.body.start,
@@ -161,7 +165,9 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send(`No record with given id: ${req.params.id}`);
+    return res
+      .status(400)
+      .send({ error: `No record with given id: ${req.params.id}` });
 
   Appointment.findByIdAndRemove(req.params.id, (err, doc) => {
     if (!err) res.send(doc);
