@@ -1,18 +1,22 @@
 const express = require("express");
 const bodyparser = require("body-parser");
-
-const { mongoose } = require("./db-prod");
+const appointmentController = require("./controllers/appointmentController");
+const { AUTH_SERVER } = require("./config/keys");
+const { mongoose } = require("./db-dev");
 
 const allowedOrigins = [
 	"http://127.0.0.1:3001",
 	"http://localhost:3001",
 	"https://appointment-app-dromeworks.netlify.app",
+	AUTH_SERVER,
 ];
-var appointmentController = require("./controllers/appointmentController");
-var userController = require("./controllers/userController");
 
-var app = express();
-
+const app = express();
+app.use(
+	bodyparser.urlencoded({
+		extended: true,
+	})
+);
 app.use(bodyparser.json());
 
 // Add headers before the routes are defined
@@ -42,12 +46,10 @@ app.use((req, res, next) => {
 	next();
 });
 
-const port = process.env.port || 8080;
+const port = process.env.port || 8081;
 
 app.listen(port, () => {
-	console.log("Server started at port: 3000");
+	console.log(`Server started at port: ${port}`);
 });
 
 app.use("/appointments", appointmentController);
-
-app.use("/users", userController);
